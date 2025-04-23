@@ -1,9 +1,7 @@
 # smtp_client.py
-from builtins import Exception, int, str
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from settings.config import settings
 import logging
 
 class SMTPClient:
@@ -13,7 +11,7 @@ class SMTPClient:
         self.username = username
         self.password = password
 
-    def send_email(self, subject: str, html_content: str, recipient: str):
+    async def send_email(self, subject: str, html_content: str, recipient: str):
         try:
             message = MIMEMultipart('alternative')
             message['Subject'] = subject
