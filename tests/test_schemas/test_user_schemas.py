@@ -1,7 +1,7 @@
 from builtins import str
 import pytest
 from pydantic import ValidationError
-from app.schemas.user_schemas import UserBase, UserCreate, UserUpdate, UserResponse, UserListResponse, LoginRequest
+from app.schemas.user_schemas import UserBase, UserCreate, UserUpdate, UserResponse, LoginRequest
 from uuid import uuid4
 
 # Tests for UserBase
