@@ -4,6 +4,62 @@ from pydantic import ValidationError
 from app.schemas.user_schemas import UserBase, UserCreate, UserUpdate, UserResponse, LoginRequest
 from uuid import uuid4
 
+# Fixtures
+@pytest.fixture
+def user_base_data():
+    return {
+        "nickname": "john_doe",
+        "email": "john.doe@example.com",
+        "full_name": "John Doe",
+        "profile_picture_url": "https://example.com/profile_pictures/john_doe.jpg",
+        "bio": "I am a software engineer with over 5 years of experience.",
+    }
+
+@pytest.fixture
+def user_create_data():
+    return {
+        "nickname": "john_doe",
+        "email": "john.doe@example.com",
+        "password": "StrongPassword123!",
+    }
+
+@pytest.fixture
+def user_update_data():
+    return {
+        "email": "updated.email@example.com",
+        "first_name": "John",
+        "last_name": "Doe",
+    }
+
+@pytest.fixture
+def user_response_data():
+    return {
+        "id": str(uuid4()),  # UUID as string
+        "nickname": "john_doe",
+        "email": "john.doe@example.com",
+        "full_name": "John Doe",
+        "profile_picture_url": "https://example.com/profile_pictures/john_doe.jpg",
+        "bio": "I am a software engineer with over 5 years of experience.",
+        "last_login_at": "2024-11-23T12:34:56",
+    }
+
+@pytest.fixture
+def login_request_data():
+    return {
+        "email": "john.doe@example.com",
+        "password": "StrongPassword123!",
+    }
+
+@pytest.fixture
+def user_base_data_invalid():
+    return {
+        "nickname": "john_doe",
+        "email": "john.doe.example.com",  # Invalid email
+        "full_name": "John Doe",
+        "profile_picture_url": "https://example.com/profile_pictures/john_doe.jpg",
+        "bio": "I am a software engineer with over 5 years of experience.",
+    }
+
 # Tests for UserBase
 def test_user_base_valid(user_base_data):
     user = UserBase(**user_base_data)
@@ -67,59 +123,3 @@ def test_user_base_url_invalid(url, user_base_data):
     user_base_data["profile_picture_url"] = url
     with pytest.raises(ValidationError):
         UserBase(**user_base_data)
-
-# Fixtures
-@pytest.fixture
-def user_base_data():
-    return {
-        "nickname": "john_doe",
-        "email": "john.doe@example.com",
-        "full_name": "John Doe",
-        "profile_picture_url": "https://example.com/profile_pictures/john_doe.jpg",
-        "bio": "I am a software engineer with over 5 years of experience.",
-    }
-
-@pytest.fixture
-def user_create_data():
-    return {
-        "nickname": "john_doe",
-        "email": "john.doe@example.com",
-        "password": "StrongPassword123!",
-    }
-
-@pytest.fixture
-def user_update_data():
-    return {
-        "email": "updated.email@example.com",
-        "first_name": "John",
-        "last_name": "Doe",
-    }
-
-@pytest.fixture
-def user_response_data():
-    return {
-        "id": str(uuid4()),  # UUID as string
-        "nickname": "john_doe",
-        "email": "john.doe@example.com",
-        "full_name": "John Doe",
-        "profile_picture_url": "https://example.com/profile_pictures/john_doe.jpg",
-        "bio": "I am a software engineer with over 5 years of experience.",
-        "last_login_at": "2024-11-23T12:34:56",
-    }
-
-@pytest.fixture
-def login_request_data():
-    return {
-        "email": "john.doe@example.com",
-        "password": "StrongPassword123!",
-    }
-
-@pytest.fixture
-def user_base_data_invalid():
-    return {
-        "nickname": "john_doe",
-        "email": "john.doe.example.com",  # Invalid email
-        "full_name": "John Doe",
-        "profile_picture_url": "https://example.com/profile_pictures/john_doe.jpg",
-        "bio": "I am a software engineer with over 5 years of experience.",
-    }
