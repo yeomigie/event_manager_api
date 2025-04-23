@@ -11,7 +11,7 @@ A FastAPI REST API for user management using PostgreSQL, Docker, and JWT.
 - [OAuth Token Fix](#issue-6)
 
 ## Docker Hub
-- Image: [yeomigie098/event-manager-api](https://hub.docker.com/r/yeomigie098/event-manager-api)
+- Image: [yeomigie098/event_manager_api](https://hub.docker.com/r/yeomigie098/event-manager-api)
 
 ## Reflection
 This project deepened my understanding of backend development with FastAPI, SQLAlchemy, and Pydantic. Implementing validation and testing to 90% coverage taught me rigorous quality assurance. Fixing OAuth issues highlighted the need for secure token handling. Git collaboration improved my workflow with branches and PRs, reflecting industry practices. Challenges like async programming and Docker setup required careful documentation reading. This experience equipped me for professional API development and underscored testing’s importance.
