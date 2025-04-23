@@ -248,6 +248,7 @@ def login_request_data():
     return {"username": "john_doe_123","email":"john.doe@example.com", "password": "SecurePassword123!"}
     @pytest.fixture
 
+@pytest.fixture
 async def user_token(user):
     # Passing the user data as a dictionary
     data = {"sub": user.email, "role": user.role}
